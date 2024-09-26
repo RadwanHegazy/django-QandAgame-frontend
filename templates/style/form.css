@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+:root{
+    --var-font:"Cairo",sans-serif;   
+}
+
+img.bg {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    padding: 2rem 1.2rem;
+    background-color: #ffffff10;
+    backdrop-filter: blur(30px);
+    border-radius: 30px;
+    font-family: var(--var-font);
+}
+
+.container h1 {
+    color: #fff;
+}
+
+.container img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    border-radius: 50%;
+    color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px dotted #ccc;
+    border-spacing: 40spx;
+    font-size: 10px;
+}
+
+.container .upload-img-btn{
+    padding: 6px 12px;
+    font-family: var(--var-font);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    background-color: #5A1CB7;
+    border-radius: 6px;   
+}
+
+.container input {
+    width: 90%;
+    height: 45px;
+    direction: rtl;
+    padding: 6px 12px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    background-color: #ffffff25;
+    font-family: var(--var-font);
+    color: #fff;
+    backdrop-filter: blur(30px);
+}
+
+.container .btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+
+.container .btns a {
+    font-size: 15px;
+    color: #20B7BC;
+    font-weight: bold;
+}
+
+.container .btns button {
+    padding: 6px 12px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #48119A;
+    font-family: var(--var-font);
+    font-weight: bold;
+    height: 50px;
+}
