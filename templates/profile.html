@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الشخصية</title>
+    <link rel="stylesheet" href="{% static 'style/profile.css' %}">
+</head>
+<body>
+    
+    <img src="{% static 'images/bg.png' %}" alt="" class="bg">
+
+    <div class="up">
+        <a href="{% url 'logout' %}">تسجيل الخروج</a>
+        <div class="user">
+            <img src="{{main_url}}{{c_user.picture}}"  alt="">
+            <p>{{c_user.full_name}}</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <a href="#">انشاء غرفة</a>
+        <div class="room">
+            <input type="number" placeholder="رقم الغرفة">
+            <button>دخول</button>
+        </div>
+    </div>
+
+
+</body>
+</html>
