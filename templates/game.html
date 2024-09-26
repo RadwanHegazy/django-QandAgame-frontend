@@ -1,31 +1,68 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بدأ التحدي</title>
-    <link rel="stylesheet" href="style/game.css">
+    <link rel="stylesheet" href="{% static 'style/game.css' %}">
 </head>
 <body>
     
-    <img src="images/bg.png" alt="" class="bg">
+    <img src="{% static 'images/bg.png' %}" alt="" class="bg">
 
     <div class="up">
-        <h1>#123</h1>
-        <p>اجمالي عدد الاسألة : 10</p>
+        <h1>#{{room_number}}</h1>
+        <p>اجمالي عدد الاسألة : {{total_questions}}</p>
     </div>
 
     <div class="down">
         <div class="user">
             <p>سؤال الي :</p>
-            <p class="user">رضوان جابر</p>
+            <p class="user" id="userEle">-</p>
         </div>
 
-        <h1>بتحب تاكل اية ؟</h1>
+        <h1 id="q">-</h1>
 
-        <button>ضن</button>
+        <button id="doneBtn" class="">ضن</button>
 
     </div>
 
+    <script>
+        var room_nubmer = "{{room_number}}";
+        var user_element = document.getElementById('userEle');
+        var question = document.getElementById("q");
+        var user_token = document.cookie.split('=')[document.cookie.split('=').length - 1];
+        var socket = new WebSocket(`ws://127.0.0.1:4444/ws/room/${room_nubmer}/?token=${user_token}`);
+        var doneBtn = document.getElementById("doneBtn");
+
+        socket.onmessage = function(e){
+            var data = JSON.parse(e.data);
+            var data_type = data.type;
+            
+
+            if (data_type == 'close'){
+                alert("تم الانتهاء من الاسألة")
+                window.location.href = "/";
+            }
+            else{
+                user_element.textContent = data.user;
+                question.textContent = data.question;
+                console.log(data.user, "{{c_user.full_name}}");
+
+                if (data.user == "{{c_user.full_name}}"){
+                    doneBtn.classList.remove('hide');
+                }else{
+                    doneBtn.classList.add('hide');
+                }
+            
+            }
+        }
+
+        doneBtn.addEventListener('click', ()=>{
+            socket.send(JSON.stringify({next:true}));
+        })
+
+    </script>
 </body>
 </html>

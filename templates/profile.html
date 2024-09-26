@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="{% static 'style/profile.css' %}">
 </head>
 <body>
+
+    {% for m in messages %}
+        <script>alert("{{m}}")</script>
+    {% endfor %}
+    
     
     <img src="{% static 'images/bg.png' %}" alt="" class="bg">
 
@@ -20,13 +25,23 @@
     </div>
 
     <div class="container">
-        <a href="#">انشاء غرفة</a>
+        <a href="?create_room=1">انشاء غرفة</a>
         <div class="room">
-            <input type="number" placeholder="رقم الغرفة">
-            <button>دخول</button>
+            <input required type="number" placeholder="رقم الغرفة">
+            <button type="button">دخول</button>
         </div>
     </div>
 
+
+    <script>
+        var room_input = document.querySelector('.room input');
+        var room_btn = document.querySelector('.room button');
+
+        room_btn.addEventListener('click', ()=>{
+            window.location.href = `/room/get/${room_input.value}/`;
+        })
+
+    </script>
 
 </body>
 </html>

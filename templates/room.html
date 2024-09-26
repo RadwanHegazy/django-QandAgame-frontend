@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اضافة الاسألة</title>
+    <link rel="stylesheet" href="{% static 'style/question.css' %}">
+</head>
+<body>
+    
+    <img src="{% static 'images/bg.png' %}" alt="" class="bg">
+
+    <div class="up">
+        <h1>#{{number}}</h1>
+    </div>
+
+    <div class="down">
+        <div class="left">
+            
+            {% for u in users %}
+                <div class="user">
+                    <img src="{{main_url}}{{u.picture}}" width="30px" height="30px" alt="">
+                    <p>{{u.full_name}}</p>
+                </div>
+            {% endfor %}
+
+        </div>
+
+        <form class="right" method="POST">
+            {% csrf_token %}
+            <div class="details">
+                <p> عدد الاسألة : {{total_questions}}</p>
+                <p>عدد الاسألة الخاصة بك : {{me_questions}}</p>
+            </div>
+            <input name="text" type="text" placeholder="أدخل سؤالك">
+            <button type="submit">اضافة</button>
+        
+        </form>
+
+    </div>
+
+</body>
+</html>

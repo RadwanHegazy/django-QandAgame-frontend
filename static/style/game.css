@@ -91,3 +91,7 @@ img.bg {
     font-weight: bold;
     cursor: pointer;
 }
+
+.down button.hide {
+    display: none;
+}

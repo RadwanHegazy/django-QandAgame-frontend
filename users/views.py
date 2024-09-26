@@ -11,6 +11,16 @@ class ProfileView(TemplateView) :
 
     @login_required
     def get(self, request, **kwargs) : 
+        create_room = request.GET.get('create_room', None)
+        if create_room :
+            action = Action(
+            url=MAIN_URL + '/game/room/create/',
+            headers=kwargs['headers']
+        )
+            action.post()
+            room_number = action.json_data()['room_number']
+            return redirect('room', room_number)
+            
         return render(request, self.template_name)
 
 class LoginView (TemplateView): 
